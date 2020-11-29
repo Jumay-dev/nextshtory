@@ -98,6 +98,28 @@ function MobileDesignerCall() {
     const inputStyle = {
         marginBottom: "1.5em"
     }
+    
+    const [name, setName] = useState('')
+    const [phone, setPhone] = useState('')
+
+    function sender() {
+        if (name !== '' && phone !== '') {
+            fetch(`http://shtoryserver.herokuapp.com/api/test`, {
+                method: 'POST',
+                body: JSON.stringify({"name": name, "phone": phone}),
+                cors: "no-cors",
+                headers: {
+                    "Content-Type": "application/json"
+                  }
+            })
+            .then(res => res.json())
+            .then(res => {
+                if (res.success) {
+                    console.log(res)
+                }
+            })
+        }
+    }
 
     return (
         <Media at="mobile">
@@ -109,14 +131,16 @@ function MobileDesignerCall() {
                             control={Input}
                             placeholder='Ваше имя'
                             style={inputStyle}
+                            onChange={ (e, {value}) => setName(value)}
                             
                         ></Form.Field>
                         <Form.Field
                             control={Input}
                             style={inputStyle}
                             placeholder='Номер телефона'
+                            onChange={ (e, {value}) => setPhone(value)}
                         ></Form.Field>
-                        <Button style={buttonStyle}>Заказать</Button>                   
+                        <Button style={buttonStyle} onClick={sender}>Заказать</Button>                   
                     </Form.Group>
                 </Form>
             </Container>
