@@ -14,7 +14,7 @@ const Content = ({secondScreenStyle, mainHeaderStyle, containerStyle, imageStyle
             <Image src={cash} style={imageStyle}/>
             <Container>
                 <Header style={subHeaderStyle}>Цена</Header>
-                <p>У нас самые вы найдете шторы на любой вкус и кошелек</p>
+                <p>Мы можем предложить вам самое лучшее соотношение цены к качеству на рынке на сегодняшний день</p>
             </Container>
         </Container>
 
@@ -22,7 +22,7 @@ const Content = ({secondScreenStyle, mainHeaderStyle, containerStyle, imageStyle
             <Image src={quality} style={imageStyle}/>
             <Container>
                 <Header style={subHeaderStyle}>Качество</Header>
-                <p>Наш магазин строго следит за качеством своего товара, контроллируя процесс производства с самого начала.</p>
+                <p>Мы всегла шьем шторы только из самых качественных материалов. Наши исполнители очень ответственно относятся к своему дело и не допускают ошибок.</p>
             </Container>
         </Container>
 
@@ -30,7 +30,7 @@ const Content = ({secondScreenStyle, mainHeaderStyle, containerStyle, imageStyle
             <Image src={time} style={imageStyle}/>
             <Container>
                 <Header style={subHeaderStyle}>Скорость</Header>
-                <p>От замера до монтажа - 2 недели</p>
+                <p>Выполним индивидуальный подбор, пошив и монтаж от 2-х недель</p>
             </Container>
         </Container>
     </Container>

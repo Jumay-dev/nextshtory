@@ -141,17 +141,6 @@ function MobileMainPage() {
         height: "100%"
     }
 
-    const buttonStyle = {
-        background: "#F8D7AB",
-        color: "#543838",
-        fontWeight: "bold",
-        width: "40%",
-        zIndex: 999,
-        fontSize: "1.3em",
-        marginBottom: 20,
-        padding: 10
-    }
-
     const backgroundStyle = {
         background: "#543838",
         position: "relative",
@@ -168,21 +157,83 @@ function MobileMainPage() {
         zIndex: 999
     }
 
+    const buttonStyle = {
+        background: "#F8D7AB",
+        color: "#543838",
+        fontWeight: "bold",
+        width: "40%",
+        zIndex: 999,
+        fontSize: "1.5em",
+        margin: 0
+    }
+
+    const modalStyle = {
+        background: "#F8D7AB",
+        color: "#543838",
+    }
+
+    const [open, setOpen] = useState(false)
+
+    const [customerData, setCustomerData] = useState({
+        name: '',
+        phone: ''
+    })
+
+    function submitHandler() {
+        setOpen(false)
+        console.log(customerData)
+    }
+
+    function changeHandler( e, {name, value} ) {
+        console.log(name)
+        console.log(value)
+        let currentData = {...customerData}
+        currentData[name] = value
+        setCustomerData(currentData)
+    }
+
     return (
         <Media at="mobile">
-           <Container style={backgroundStyle}>
+           <div style={backgroundStyle}>
                 <Image src={backgroundImage} style={imageStyle}/>
 
                 <Header style={headerStyle} size='huge'>Магазин штор и карнизов</Header>
 
                 <Container text style={textStyle}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad 
-                    minim veniam, quis nostrud exercitation
+                    Лучшие шторы и карнизы в Москве и Московской области. Самые качественные материалы, уникальный дизайн и ответственные исполнители.
                 </Container>
 
                 <Header style={offerStyle}>БЕСПЛАТНАЯ ОНЛАЙН КОНСУЛЬТАЦИЯ ДИЗАЙНЕРА</Header>
-                <Button style={buttonStyle}>Заказать</Button>
-            </Container>
+                <Modal
+                    onClose={() => setOpen(false)}
+                    onOpen={() => setOpen(true)}
+                    open={open}
+                    trigger={<Button style={buttonStyle}>Заказать</Button>}
+                    >
+                    <Modal.Header style={{background: "#543838", color: "white"}}>Форма заказа</Modal.Header>
+                    <Modal.Content style={modalStyle}>
+                        <Modal.Description>
+                        <Header>Введите ваши контактные данные</Header>
+                        <Form>
+                            <Form.Input fluid label='Имя' placeholder='Введите ваше имя' onChange={changeHandler} name="name"/>
+                            <Form.Input fluid label='Номер телефона' placeholder='Введите ваш номер телефона' onChange={changeHandler} name="phone"/>
+                        </Form>
+                        </Modal.Description>
+                    </Modal.Content>
+                    <Modal.Actions style={{background: "#543838", color: "white"}}>
+                        <Button color='black' onClick={() => setOpen(false)}>
+                            Выйти
+                        </Button>
+                        <Button
+                        content="Заказать"
+                        labelPosition='right'
+                        icon='checkmark'
+                        onClick={submitHandler}
+                        positive
+                        />
+                    </Modal.Actions>
+                </Modal>
+            </div>
         </Media>
     )
 }

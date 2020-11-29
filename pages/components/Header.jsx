@@ -12,11 +12,13 @@ import {
 import { MediaContextProvider, Media } from "./Media"
 import logo from '../assets/logo.png'
 import phone from '../assets/phone.png'
+import Head from 'next/head'
 
 function DesktopContainer({children}) {
   const [fixed, setFixed] = useState(false)
   const hideFixedMenu = () => setFixed(false)
   const showFixedMenu = () => setFixed(true)
+  const [active, setActive] = useState('main');
 
   const headerStyle = {
     display: "flex",
@@ -28,6 +30,10 @@ function DesktopContainer({children}) {
     zIndex: 999999
   }
 
+  function handleClick(e, { name }) {
+    setActive(name)
+  }
+
   return (
     <Media greaterThan="mobile" >
       <Visibility
@@ -35,27 +41,53 @@ function DesktopContainer({children}) {
         onBottomPassed={showFixedMenu}
         onBottomPassedReverse={hideFixedMenu}
       >
-          <Menu
-            fixed={fixed ? "top" : null}
-            style={headerStyle}
-            pointing={!fixed}
-            secondary={!fixed}
-            size="large"
-          >
-            <Menu.Item>
-              <Image src={logo} style={{width: 70}}/>
-            </Menu.Item>
+        <Head>
+          <title>Шторы Москвы - купить шторы в Москве</title>
+          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+          <meta name="yandex-verification" content="8979119a9f2b92f0" />
+          <meta name="description" content="Шторы на заказ в Москве и Московской области" />
+          <meta name="keywords" content="шторы, на заказ, москва, московская область" />
+        </Head>
+        <Menu
+          fixed={fixed ? "top" : null}
+          style={headerStyle}
+          pointing={!fixed}
+          secondary={!fixed}
+          size="large"
+        >
+          <Menu.Item>
+            <Image src={logo} style={{width: 70}}/>
+          </Menu.Item>
 
-            <Menu.Item active >Главная</Menu.Item>
-            <Menu.Item >О нас</Menu.Item>
-            <Menu.Item >Галерея</Menu.Item>
-            <Menu.Item >Контакты</Menu.Item>
+          <Menu.Item 
+            name="main" 
+            active={active === 'main' ? true : false }
+            onClick={handleClick}
+          >Главная</Menu.Item>
 
-            <Menu.Item position="right">
-              <Image src={phone} style={{width: 33}}/>
-              <span>+7 (926) 927-90-05</span>
-            </Menu.Item>
-          </Menu>
+          <Menu.Item 
+            name="about" 
+            active={active === 'about' ? true : false }
+            onClick={handleClick}
+          >О нас</Menu.Item>
+
+          <Menu.Item 
+            name="gallery" 
+            active={active === 'gallery' ? true : false }
+            onClick={handleClick}
+          >Галерея</Menu.Item>
+          
+          <Menu.Item
+            name="contacts" 
+            active={active === 'contacts' ? true : false }
+            onClick={handleClick}
+          >Контакты</Menu.Item>
+
+          <Menu.Item position="right">
+            <Image src={phone} style={{width: 33}}/>
+            <a href="tel:+79269279005">+7 (926) 927-90-05</a>
+          </Menu.Item>
+        </Menu>
       </Visibility>
       {children}
     </Media>
@@ -66,62 +98,78 @@ DesktopContainer.propTypes = {
   children: PropTypes.node
 };
   
-class MobileContainer extends React.Component {
-  state = {};
+function MobileContainer(props) {
+  const [state, setState] = useState(false)
+  const [active, setActive] = useState('')
 
-  handleSidebarHide = () => this.setState({ sidebarOpened: false });
-
-  handleToggle = () => this.setState({ sidebarOpened: true });
-
-  render() {
-    const { children } = this.props;
-    const { sidebarOpened } = this.state;
+  const handleSidebarHide = () => setState(false);
+  const handleToggle = () => setState(true);
+  function handleClick(e, { name }) {
+    setActive(name)
+    setState(false)
+  }
+  const { children } = props;
 
   return (
-    <Media as={Sidebar.Pushable} at="mobile">
+    <Media as={Sidebar.Pushable} at="mobile" style={{margin: 0}}>
+        <Head>
+          <title>Шторы Москвы - купить шторы в Москве</title>
+          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+          <meta name="yandex-verification" content="8979119a9f2b92f0" />
+          <meta name="description" content="Шторы на заказ в Москве и Московской области" />
+          <meta name="keywords" content="шторы, на заказ, москва, московская область" />
+        </Head>
         <Sidebar.Pushable>
         <Sidebar
-            as={Menu}
-            animation="overlay"
-            onHide={this.handleSidebarHide}
-            vertical
-            visible={sidebarOpened}
+          as={Menu}
+          animation="overlay"
+          onHide={handleSidebarHide}
+          vertical
+          visible={state}
         >
-            <Menu.Item  active >Аукцион</Menu.Item>
-            <Menu.Item >Продать машину</Menu.Item>
-            <Menu.Item >О нас</Menu.Item>
+          <Menu.Item 
+            name="main" 
+            active={active === 'main' ? true : false }
+            onClick={handleClick}
+          >Главная</Menu.Item>
+
+          <Menu.Item 
+            name="about" 
+            active={active === 'about' ? true : false }
+            onClick={handleClick}
+          >О нас</Menu.Item>
+
+          <Menu.Item 
+            name="gallery" 
+            active={active === 'gallery' ? true : false }
+            onClick={handleClick}
+          >Галерея</Menu.Item>
+          
+          <Menu.Item
+            name="contacts" 
+            active={active === 'contacts' ? true : false }
+            onClick={handleClick}
+          >Контакты</Menu.Item>
         </Sidebar>
 
-        <Sidebar.Pusher dimmed={sidebarOpened}>
-            <Segment
-            textAlign="center"
-            style={{ minHeight: 70, padding: "1em 0em" }}
-            vertical
-            >
-            <Container>
-                <Menu pointing secondary size="large">
-                <Menu.Item onClick={this.handleToggle}>
+        <Sidebar.Pusher dimmed={state}>
+          <div style={{margin: 0}}>
+              <Menu pointing secondary size="large">
+                <Menu.Item onClick={handleToggle}>
                     <Icon name="sidebar" />
                 </Menu.Item>
                 <Menu.Item position="right">
-                  <Image src={phone} style={{width: 33}}/>
-                  <span>+7 (800) 555 35-35</span>
+                    <Image src={phone} style={{width: 33}}/>
+                    <a href="tel:+79269279005">+7 (926) 927-90-05</a>
                 </Menu.Item>
-                </Menu>
-            </Container>
-            </Segment>
-
-            {children}
+              </Menu>
+          </div>
+          {children}
         </Sidebar.Pusher>
         </Sidebar.Pushable>
       </Media>
     );
-  }
 }
-
-MobileContainer.propTypes = {
-  children: PropTypes.node
-};
 
 const ResponsiveContainer = ({ children }) => (
   <MediaContextProvider>
