@@ -8,7 +8,7 @@ function DesktopDesignerCall() {
 
     function sender() {
         if (name !== '' && phone !== '') {
-            fetch(`https://shtoryserver.herokuapp.com:3001/api/test`, {
+            fetch(`http://shtoryserver.herokuapp.com/api/test`, {
                 method: 'POST',
                 body: JSON.stringify({"name": name, "phone": phone}),
                 cors: "no-cors",
