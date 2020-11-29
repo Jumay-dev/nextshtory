@@ -36,20 +36,23 @@ function DesktopMainPage() {
     })
 
     function submitHandler() {
-        fetch(`http://localhost:3001/api/test`, {
-            method: 'POST',
-            body: JSON.stringify({"name": customerData.name, "phone": customerData.phone}),
-            cors: "no-cors",
-            headers: {
-                "Content-Type": "application/json"
-              }
-        })
-        .then(res => res.json())
-        .then(res => {
-            if (res.success) {
-                setOpen(false)
-            }
-        })
+        if(customerData.name !== '' && customerData.phone !== '') {
+            fetch(`http://shtoryserver.herokuapp.com/api/test`, {
+                method: 'POST',
+                body: JSON.stringify({"name": customerData.name, "phone": customerData.phone}),
+                cors: "no-cors",
+                headers: {
+                    "Content-Type": "application/json"
+                  }
+            })
+            .then(res => res.json())
+            .then(res => {
+                if (res.success) {
+                    console.log('sended')
+                    setOpen(false)
+                }
+            })
+        }
     }
 
     function changeHandler( e, {name, value} ) {
@@ -190,12 +193,23 @@ function MobileMainPage() {
     })
 
     function submitHandler() {
-        let data = new FormData()
-        fetch(`${window.location.origin}/mailer.js`)
-        .then(res => res.json())
-        .then(res => console.log('res', res))
-        // setOpen(false)
-        // console.log(customerData)
+        if(customerData.name !== '' && customerData.phone !== '') {
+            fetch(`http://shtoryserver.herokuapp.com/api/test`, {
+                method: 'POST',
+                body: JSON.stringify({"name": customerData.name, "phone": customerData.phone}),
+                cors: "no-cors",
+                headers: {
+                    "Content-Type": "application/json"
+                  }
+            })
+            .then(res => res.json())
+            .then(res => {
+                if (res.success) {
+                    console.log('sended')
+                    setOpen(false)
+                }
+            })
+        }
     }
 
     function changeHandler( e, {name, value} ) {
