@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import React, {useState} from "react";
 import {
   Container,
@@ -94,10 +93,6 @@ function DesktopContainer({children}) {
   )
 }
   
-DesktopContainer.propTypes = {
-  children: PropTypes.node
-};
-  
 function MobileContainer(props) {
   const [state, setState] = useState(false)
   const [active, setActive] = useState('')
@@ -177,9 +172,5 @@ const ResponsiveContainer = ({ children }) => (
       <MobileContainer>{children}</MobileContainer>
   </MediaContextProvider>
 );
-
-ResponsiveContainer.propTypes = {
-  children: PropTypes.node
-};
 
 export default ResponsiveContainer

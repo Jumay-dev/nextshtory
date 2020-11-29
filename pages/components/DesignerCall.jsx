@@ -1,8 +1,29 @@
-import React from "react"
+import React, {useState} from "react"
 import { Container, Form, Input,Button } from 'semantic-ui-react'
 import { MediaContextProvider, Media } from "./Media"
 
 function DesktopDesignerCall() {
+    const [name, setName] = useState('')
+    const [phone, setPhone] = useState('')
+
+    function sender() {
+        if (name !== '' && phone !== '') {
+            fetch(`http://localhost:3001/api/test`, {
+                method: 'POST',
+                body: JSON.stringify({"name": name, "phone": phone}),
+                cors: "no-cors",
+                headers: {
+                    "Content-Type": "application/json"
+                  }
+            })
+            .then(res => res.json())
+            .then(res => {
+                if (res.success) {
+                    console.log(res)
+                }
+            })
+        }
+    }
     const designerCallStyle = {
         margin: 0,
         padding: 60,
@@ -29,14 +50,18 @@ function DesktopDesignerCall() {
                         <Form.Field
                             control={Input}
                             placeholder='Ваше имя'
+                            onChange={ (e, {value}) => setName(value)}
                             
                         ></Form.Field>
                         <Form.Field
                             control={Input}
-                            
+                            onChange={(e, {value}) => setPhone(value)}
                             placeholder='Номер телефона'
                         ></Form.Field>
-                        <Button style={buttonStyle}>Заказать</Button>                   
+                        <Button 
+                        style={buttonStyle}
+                        onClick={sender}
+                        >Заказать</Button>                   
                     </Form.Group>
                 </Form>
             </Container>

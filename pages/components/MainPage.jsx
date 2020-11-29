@@ -36,13 +36,23 @@ function DesktopMainPage() {
     })
 
     function submitHandler() {
-        setOpen(false)
-        console.log(customerData)
+        fetch(`http://localhost:3001/api/test`, {
+            method: 'POST',
+            body: JSON.stringify({"name": customerData.name, "phone": customerData.phone}),
+            cors: "no-cors",
+            headers: {
+                "Content-Type": "application/json"
+              }
+        })
+        .then(res => res.json())
+        .then(res => {
+            if (res.success) {
+                setOpen(false)
+            }
+        })
     }
 
     function changeHandler( e, {name, value} ) {
-        console.log(name)
-        console.log(value)
         let currentData = {...customerData}
         currentData[name] = value
         setCustomerData(currentData)
@@ -180,8 +190,12 @@ function MobileMainPage() {
     })
 
     function submitHandler() {
-        setOpen(false)
-        console.log(customerData)
+        let data = new FormData()
+        fetch(`${window.location.origin}/mailer.js`)
+        .then(res => res.json())
+        .then(res => console.log('res', res))
+        // setOpen(false)
+        // console.log(customerData)
     }
 
     function changeHandler( e, {name, value} ) {
@@ -215,8 +229,16 @@ function MobileMainPage() {
                         <Modal.Description>
                         <Header>Введите ваши контактные данные</Header>
                         <Form>
-                            <Form.Input fluid label='Имя' placeholder='Введите ваше имя' onChange={changeHandler} name="name"/>
-                            <Form.Input fluid label='Номер телефона' placeholder='Введите ваш номер телефона' onChange={changeHandler} name="phone"/>
+                            <Form.Input 
+                            fluid label='Имя' 
+                            placeholder='Введите ваше имя' 
+                            onChange={changeHandler} 
+                            name="name"/>
+                            <Form.Input 
+                            fluid label='Номер телефона' 
+                            placeholder='Введите ваш номер телефона' 
+                            onChange={changeHandler} 
+                            name="phone"/>
                         </Form>
                         </Modal.Description>
                     </Modal.Content>
