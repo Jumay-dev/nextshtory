@@ -44,8 +44,8 @@ function DesktopContainer({children}) {
           <title>Шторы Москвы - купить шторы в Москве</title>
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
           <meta name="yandex-verification" content="8979119a9f2b92f0" />
-          <meta name="description" content="Шторы на заказ в Москве и Московской области" />
-          <meta name="keywords" content="шторы, на заказ, москва, московская область" />
+          <meta name="description" content="Купить шторы на заказ в Москве и Московской области. Лучшие цены, высокое качество, ответственный подход к своему делу." />
+          <meta name="keywords" content="шторы, купить шторы, рулонные шторы, шторы фото, шторы на кухню, шторы на окно, магазин штор, шторы на заказ, шторы в гостинную, сшить шторы, салон штор" />
         </Head>
         <Menu
           fixed={fixed ? "top" : null}
