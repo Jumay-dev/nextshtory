@@ -25,7 +25,7 @@ const smallImagesStyle = {
 
 function ItemOne({image}) {
     return (
-        <Grid.Column>
+        <Grid.Column key={image}>
             <Container style={{overflow: 'hidden'}}>
             <LightgalleryItem group="any" src={image}>
                 <img 

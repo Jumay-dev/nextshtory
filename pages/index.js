@@ -7,6 +7,7 @@ import DesignerCall from './components/DesignerCall'
 import Contacts from './components/Contacts'
 import Footer from './components/Footer'
 import 'semantic-ui-css/semantic.min.css'
+import {YMInitializer} from 'react-yandex-metrika'
 
 export default function Home() {
   // document.title="Шторы Москвы - магазин штор и карнизов"
@@ -18,6 +19,7 @@ export default function Home() {
   }
   return (    
     <div className="App" style={applicationStyle}>
+      <YMInitializer accounts={[69970516]} options={{webvisor: true}}/>
       <Header>
         <MainPage />
         <SecondScreen />
