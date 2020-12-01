@@ -11,7 +11,7 @@ import {
 import { MediaContextProvider, Media } from "./Media"
 import logo from '../assets/logo.png'
 import phone from '../assets/phone.png'
-import Head from 'next/head'
+
 
 function DesktopContainer({children}) {
   const [fixed, setFixed] = useState(false)
@@ -40,13 +40,6 @@ function DesktopContainer({children}) {
         onBottomPassed={showFixedMenu}
         onBottomPassedReverse={hideFixedMenu}
       >
-        <Head>
-          <title>Шторы Москвы - купить шторы в Москве</title>
-          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-          <meta name="yandex-verification" content="8979119a9f2b92f0" />
-          <meta name="description" content="Купить шторы на заказ в Москве и Московской области. Лучшие цены, высокое качество, ответственный подход к своему делу." />
-          <meta name="keywords" content="шторы, купить шторы, рулонные шторы, шторы фото, шторы на кухню, шторы на окно, магазин штор, шторы на заказ, шторы в гостинную, сшить шторы, салон штор" />
-        </Head>
         <Menu
           fixed={fixed ? "top" : null}
           style={headerStyle}
@@ -107,13 +100,6 @@ function MobileContainer(props) {
 
   return (
     <Media as={Sidebar.Pushable} at="mobile" style={{margin: 0}}>
-        <Head>
-          <title>Шторы Москвы - купить шторы в Москве</title>
-          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-          <meta name="yandex-verification" content="8979119a9f2b92f0" />
-          <meta name="description" content="Шторы на заказ в Москве и Московской области" />
-          <meta name="keywords" content="шторы, на заказ, москва, московская область" />
-        </Head>
         <Sidebar.Pushable>
         <Sidebar
           as={Menu}
