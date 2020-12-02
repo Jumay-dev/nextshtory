@@ -11,13 +11,14 @@ import {YMInitializer} from 'react-yandex-metrika'
 import Head from 'next/head'
 
 export default function Home() {
-  // document.title="Шторы Москвы - магазин штор и карнизов"
   const applicationStyle = {
     fontFamily: "Montserrat",
     margin: 0,
     padding: 0,
     boxSizing: "border-box"
   }
+  const [secondScreenPosition, setSecondScreenPosition] = React.useState('sdfs')
+  
   return (    
     <div className="App" style={applicationStyle}>
       <YMInitializer accounts={[69970516]} options={{webvisor: true}}/>
@@ -28,9 +29,13 @@ export default function Home() {
         <meta name="description" content="Купить шторы на заказ в Москве и Московской области. Лучшие цены, высокое качество, ответственный подход к своему делу." />
         <meta name="keywords" content="шторы, купить шторы, рулонные шторы, шторы фото, шторы на кухню, шторы на окно, магазин штор, шторы на заказ, шторы в гостинную, сшить шторы, салон штор" />
       </Head>
-      <Header>
+      <Header
+        secondScreenPosition={secondScreenPosition}
+      >
         <MainPage />
-        <SecondScreen />
+        <SecondScreen 
+          setSecondScreenPosition={setSecondScreenPosition}
+        />
         <ThirdScreen />
         <FourthScreen />
         <DesignerCall />

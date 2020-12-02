@@ -44,10 +44,10 @@ function MobileFooter() {
 
     return (
         <Media at="mobile">
-            <Container style={footerStyle}>
+            <div style={footerStyle}>
                 <span>by Jumay</span>
                 <p>Шторы Москвы (с) 2020</p>
-            </Container>
+            </div>
         </Media>
     )
 }

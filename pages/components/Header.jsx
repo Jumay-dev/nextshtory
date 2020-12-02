@@ -13,7 +13,7 @@ import logo from '../assets/logo.png'
 import phone from '../assets/phone.png'
 
 
-function DesktopContainer({children}) {
+function DesktopContainer(props) {
   const [fixed, setFixed] = useState(false)
   const hideFixedMenu = () => setFixed(false)
   const showFixedMenu = () => setFixed(true)
@@ -27,6 +27,11 @@ function DesktopContainer({children}) {
     paddingLeft: 60,
     paddingRight: 60,
     zIndex: 999999
+  }
+
+  const menuPointStyle = {
+    marginBottom: 3,
+    color: "#543838"
   }
 
   function handleClick(e, { name }) {
@@ -47,41 +52,45 @@ function DesktopContainer({children}) {
           secondary={!fixed}
           size="large"
         >
-          <Menu.Item>
-            <Image src={logo} style={{width: 70}}/>
+          <Menu.Item style={{padding: 0, marginRight: 30}}>
+            <Image src={logo} style={{width: 60, padding: 5}}/>
           </Menu.Item>
 
           <Menu.Item 
             name="main" 
             active={active === 'main' ? true : false }
             onClick={handleClick}
-          >Главная</Menu.Item>
+            style={menuPointStyle}
+        >Главная</Menu.Item>
 
           <Menu.Item 
             name="about" 
             active={active === 'about' ? true : false }
             onClick={handleClick}
+            style={menuPointStyle}
           >О нас</Menu.Item>
 
           <Menu.Item 
             name="gallery" 
             active={active === 'gallery' ? true : false }
             onClick={handleClick}
+            style={menuPointStyle}
           >Галерея</Menu.Item>
           
           <Menu.Item
             name="contacts" 
             active={active === 'contacts' ? true : false }
             onClick={handleClick}
+            style={menuPointStyle}
           >Контакты</Menu.Item>
 
           <Menu.Item position="right">
-            <Image src={phone} style={{width: 33}}/>
-            <a href="tel:+79269279005">+7 (926) 927-90-05</a>
+            <Image src={phone} style={{width: 25}}/>
+            <a href="tel:+79269279005" style={{color: "#543838"}}>+7 (926) 927-90-05</a>
           </Menu.Item>
         </Menu>
       </Visibility>
-      {children}
+      {props.children}
     </Media>
   )
 }
@@ -140,8 +149,8 @@ function MobileContainer(props) {
                     <Icon name="sidebar" />
                 </Menu.Item>
                 <Menu.Item position="right">
-                    <Image src={phone} style={{width: 33}}/>
-                    <a href="tel:+79269279005">+7 (926) 927-90-05</a>
+                    <Image src={phone} style={{width: 20}}/>
+                    <a href="tel:+79269279005" style={{color: "#543838"}}>+7 (926) 927-90-05</a>
                 </Menu.Item>
               </Menu>
           </div>

@@ -5,6 +5,7 @@ import { MediaContextProvider, Media } from "./Media"
 function DesktopDesignerCall() {
     const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
+    const [success, setSuccess] = useState(false)
 
     function sender() {
         if (name !== '' && phone !== '') {
@@ -20,6 +21,7 @@ function DesktopDesignerCall() {
             .then(res => {
                 if (res.success) {
                     console.log(res)
+                    setSuccess(true)
                 }
             })
         }
@@ -44,8 +46,8 @@ function DesktopDesignerCall() {
     return (
         <Media greaterThan="mobile">
             <Container style={designerCallStyle}>
-                <h1>ВЫЗВАТЬ ДИЗАЙНЕРА НА ДОМ</h1>
-                <Form style={{marginTop: "3em"}}>
+                <h2>ВЫЗВАТЬ ДИЗАЙНЕРА НА ДОМ</h2>
+                {!success ? <Form style={{marginTop: "3em"}}>
                     <Form.Group width="equal" >
                         <Form.Field
                             control={Input}
@@ -63,7 +65,9 @@ function DesktopDesignerCall() {
                         onClick={sender}
                         >Заказать</Button>                   
                     </Form.Group>
-                </Form>
+                </Form> : <Container text
+                style={{minHeight: 100, display: "flex", alignItems: "center", justifyContent: "center"}}
+                >Спасибо за Ваш заказ! Наш дизайнер свяжется с Вами в ближайшее время.</Container>}
             </Container>
         </Media>
     )
@@ -101,6 +105,7 @@ function MobileDesignerCall() {
     
     const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
+    const [success, setSuccess] = useState(false)
 
     function sender() {
         if (name !== '' && phone !== '') {
@@ -116,6 +121,7 @@ function MobileDesignerCall() {
             .then(res => {
                 if (res.success) {
                     console.log(res)
+                    setSuccess(true)
                 }
             })
         }
@@ -124,8 +130,8 @@ function MobileDesignerCall() {
     return (
         <Media at="mobile">
             <Container style={designerCallStyle}>
-                <h1 style={{textAlign: "center"}}>ВЫЗВАТЬ ДИЗАЙНЕРА НА ДОМ</h1>
-                <Form style={{marginTop: "3em"}}>
+                <h2 style={{textAlign: "center"}}>ВЫЗВАТЬ ДИЗАЙНЕРА НА ДОМ</h2>
+                {!success ? <Form style={{marginTop: "3em"}}>
                     <Form.Group width="equal" style={formStyle}>
                         <Form.Field
                             control={Input}
@@ -142,7 +148,10 @@ function MobileDesignerCall() {
                         ></Form.Field>
                         <Button style={buttonStyle} onClick={sender}>Заказать</Button>                   
                     </Form.Group>
-                </Form>
+                </Form> : 
+                <Container 
+                style={{minHeight: 100, display: "flex", alignItems: "center", justifyContent: "center"}}
+                >Спасибо за Ваш заказ! Наш дизайнер свяжется с Вами в ближайшее время.</Container>}
             </Container>
         </Media>
     )

@@ -35,6 +35,8 @@ function DesktopMainPage() {
         phone: ''
     })
 
+    const [success, setSuccess] = useState(false)
+
     function submitHandler() {
         if(customerData.name !== '' && customerData.phone !== '') {
             fetch(`http://shtoryserver.herokuapp.com/api/test`, {
@@ -50,6 +52,7 @@ function DesktopMainPage() {
                 if (res.success) {
                     console.log('sended')
                     setOpen(false)
+                    setSuccess(true)
                 }
             })
         }
@@ -114,7 +117,7 @@ function DesktopMainPage() {
                     onClose={() => setOpen(false)}
                     onOpen={() => setOpen(true)}
                     open={open}
-                    trigger={<Button style={buttonStyle}>Заказать</Button>}
+                    trigger={<Button disabled={success} style={buttonStyle}>{!success ? 'Заказать' : 'Отправлено'}</Button>}
                     >
                     <Modal.Header style={{background: "#543838", color: "white"}}>Форма заказа</Modal.Header>
                     <Modal.Content style={modalStyle}>
@@ -192,6 +195,8 @@ function MobileMainPage() {
         phone: ''
     })
 
+    const [success, setSuccess] = useState(false)
+
     function submitHandler() {
         if(customerData.name !== '' && customerData.phone !== '') {
             fetch(`http://shtoryserver.herokuapp.com/api/test`, {
@@ -207,6 +212,7 @@ function MobileMainPage() {
                 if (res.success) {
                     console.log('sended')
                     setOpen(false)
+                    setSuccess(true)
                 }
             })
         }
@@ -236,7 +242,7 @@ function MobileMainPage() {
                     onClose={() => setOpen(false)}
                     onOpen={() => setOpen(true)}
                     open={open}
-                    trigger={<Button style={buttonStyle}>Заказать</Button>}
+                    trigger={<Button disabled={success} style={buttonStyle}>{!success ? 'Заказать' : 'Отправлено'}</Button>}
                     >
                     <Modal.Header style={{background: "#543838", color: "white"}}>Форма заказа</Modal.Header>
                     <Modal.Content style={modalStyle}>
