@@ -10,7 +10,7 @@ const map = (
 )
 
 const Content = ({secondScreenStyle, mainHeaderStyle, containerStyle, imageStyle, subHeaderStyle}) => (
-    <Container style={secondScreenStyle}>
+    <Container style={secondScreenStyle} id="page--contacts">
         <Header style={mainHeaderStyle}>КОНТАКТЫ</Header>
 
         <Container style={containerStyle}>

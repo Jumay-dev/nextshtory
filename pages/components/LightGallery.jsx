@@ -51,7 +51,9 @@ function LightGallery({
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center"
-            }}>
+            }}
+            id="page--gallery"
+            >
         <MediaContextProvider>
             <Media greaterThanOrEqual="computer">
                 <LightgalleryProvider

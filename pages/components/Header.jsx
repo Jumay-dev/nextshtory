@@ -11,6 +11,18 @@ import {
 import { MediaContextProvider, Media } from "./Media"
 import logo from '../assets/logo.png'
 import phone from '../assets/phone.png'
+import * as Scroll from 'react-scroll';
+
+let scroll    = Scroll.animateScroll
+
+function getCoords(elem) {
+  var box = elem.getBoundingClientRect();
+
+  return {
+    top: box.top + pageYOffset,
+    left: box.left + pageXOffset
+  }
+}
 
 
 function DesktopContainer({children}) {
@@ -18,7 +30,6 @@ function DesktopContainer({children}) {
   const hideFixedMenu = () => setFixed(false)
   const showFixedMenu = () => setFixed(true)
   const [active, setActive] = useState('main');
-  const [secondScreenPosition, setSecondScreenPosition] = useState('sdfs')
 
   const headerStyle = {
     display: "flex",
@@ -37,15 +48,13 @@ function DesktopContainer({children}) {
 
   function handleClick(e, { name }) {
     setActive(name)
-  }
-
-  const childrenWithProps = React.Children.map(children, child => {
-    // checking isValidElement is the safe way and avoids a typescript error too
-    if (React.isValidElement(child)) {
-        return React.cloneElement(child, { check: 'asd' });
+    let elemID = "page--" + name
+    let elem = document.getElementById(elemID)
+    if (elem) {
+      let elemCoords = getCoords(elem)
+      scroll.scrollTo(elemCoords.top - 100)
     }
-    return child;
-  });
+  }
 
   return (
     <Media greaterThan="mobile" >
@@ -99,7 +108,7 @@ function DesktopContainer({children}) {
           </Menu.Item>
         </Menu>
       </Visibility>
-      {childrenWithProps}
+      {children}
     </Media>
   )
 }
@@ -110,9 +119,16 @@ function MobileContainer(props) {
 
   const handleSidebarHide = () => setState(false);
   const handleToggle = () => setState(true);
+
   function handleClick(e, { name }) {
     setActive(name)
     setState(false)
+    let elemID = "page--" + name
+    let elem = document.getElementById(elemID)
+    if (elem) {
+      let elemCoords = getCoords(elem)
+      scroll.scrollTo(elemCoords.top - 100)
+    }
   }
   const { children } = props;
 

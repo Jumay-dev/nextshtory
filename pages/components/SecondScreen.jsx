@@ -7,7 +7,7 @@ import { MediaContextProvider, Media } from "./Media"
 
 
 const Content = ({secondScreenStyle, mainHeaderStyle, containerStyle, imageStyle, subHeaderStyle}) => (
-    <Container style={secondScreenStyle}>
+    <Container style={secondScreenStyle} id="page--second">
         <Header style={mainHeaderStyle}>ПОЧЕМУ СТОИТ ВЫБРАТЬ НАС</Header>
 
         <Container style={containerStyle}>
@@ -118,7 +118,7 @@ function MobileSecondScreen() {
     }
 
     return (
-        <Media at="mobile">
+        <Media at="mobile" id="page--second">
             <Content 
                 secondScreenStyle={secondScreenStyle} 
                 imageStyle={imageStyle} 

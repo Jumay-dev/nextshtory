@@ -112,7 +112,7 @@ function DesktopMainPage(props) {
 
     return (
         <Media greaterThan="mobile">
-            <Container style={backgroundStyle}>
+            <Container style={backgroundStyle} id="page--main">
                 <Image src={backgroundImage} style={imageStyle}/>
 
                 <Header style={headerStyle} size='huge'>Магазин штор и карнизов</Header>
@@ -237,7 +237,7 @@ function MobileMainPage() {
 
     return (
         <Media at="mobile">
-           <div style={backgroundStyle}>
+           <div style={backgroundStyle} id="page--main">
                 <Image src={backgroundImage} style={imageStyle}/>
 
                 <Header style={headerStyle} size='huge'>Магазин штор и карнизов</Header>

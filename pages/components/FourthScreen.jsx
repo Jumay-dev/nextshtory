@@ -46,7 +46,7 @@ function DesktopFourthScreen() {
     }
     return (
         <Media greaterThan="mobile">
-            <Container style={fourthScreenStyle}>
+            <Container style={fourthScreenStyle} id="page--about">
                 <Header>ШЬЕМ ШТОРЫ НА ЗАКАЗ</Header>
                 <Container style={textStyle}>
                     {text}
@@ -73,7 +73,7 @@ function MobileFourthScreen() {
     }
     return (
         <Media at="mobile">
-            <Container style={fourthScreenStyle}>
+            <Container style={fourthScreenStyle} id="page--about">
                 <Header>ШЬЕМ ШТОРЫ НА ЗАКАЗ</Header>
                 <Container style={textStyle}>
                     {text}
