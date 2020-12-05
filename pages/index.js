@@ -27,7 +27,7 @@ export default function Home() {
         <meta name="keywords" content="шторы, купить шторы, рулонные шторы, шторы фото, шторы на кухню, шторы на окно, магазин штор, шторы на заказ, шторы в гостинную, сшить шторы, салон штор" />
       </Head>
       <Header>
-        {/* <YMInitializer accounts={[69970516]} options={{webvisor: true}}/> */}
+        <YMInitializer accounts={[69970516]} options={{webvisor: true}}/>
         <MainPage />
         <SecondScreen />
         <ThirdScreen />

@@ -5,7 +5,7 @@ import {
     Button, 
     Header, 
     Modal, 
-    Form 
+    Form,
 } from 'semantic-ui-react'
 import backgroundImage from '../assets/image.png'
 import { MediaContextProvider, Media } from "./Media"
@@ -36,7 +36,7 @@ let offerStyle = {
 
 function DesktopMainPage(props) {
     const [open, setOpen] = useState(false)
-
+    const [loading, setLoading] = useState(false)
     const [customerData, setCustomerData] = useState({
         name: '',
         phone: ''
@@ -48,6 +48,7 @@ function DesktopMainPage(props) {
 
     function submitHandler() {
         if(customerData.name !== '' && customerData.phone !== '') {
+            setLoading(true)
             fetch(`http://shtoryserver.herokuapp.com/api/test`, {
                 method: 'POST',
                 body: JSON.stringify({"name": customerData.name, "phone": customerData.phone}),
@@ -58,6 +59,7 @@ function DesktopMainPage(props) {
             })
             .then(res => res.json())
             .then(res => {
+                setLoading(false)
                 if (res.success) {
                     console.log('sended')
                     setOpen(false)
@@ -139,11 +141,15 @@ function DesktopMainPage(props) {
                         </Modal.Description>
                     </Modal.Content>
                     <Modal.Actions style={{background: "#543838", color: "white"}}>
-                        <Button color='black' onClick={() => setOpen(false)}>
+                        <Button 
+                        color='black'
+                        onClick={() => setOpen(false)}>
                             Выйти
                         </Button>
                         <Button
                         content="Заказать"
+                        loading={loading}
+                        disabled={loading}
                         labelPosition='right'
                         icon='checkmark'
                         onClick={submitHandler}
@@ -198,16 +204,16 @@ function MobileMainPage() {
     }
 
     const [open, setOpen] = useState(false)
-
     const [customerData, setCustomerData] = useState({
         name: '',
         phone: ''
     })
-
     const [success, setSuccess] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     function submitHandler() {
         if(customerData.name !== '' && customerData.phone !== '') {
+            setLoading(true)
             fetch(`http://shtoryserver.herokuapp.com/api/test`, {
                 method: 'POST',
                 body: JSON.stringify({"name": customerData.name, "phone": customerData.phone}),
@@ -218,6 +224,7 @@ function MobileMainPage() {
             })
             .then(res => res.json())
             .then(res => {
+                setLoading(false)
                 if (res.success) {
                     console.log('sended')
                     setOpen(false)
@@ -277,6 +284,8 @@ function MobileMainPage() {
                         </Button>
                         <Button
                         content="Заказать"
+                        loading={loading}
+                        disabled={loading}
                         labelPosition='right'
                         icon='checkmark'
                         onClick={submitHandler}
