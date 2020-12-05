@@ -1,5 +1,12 @@
 import React, { useState } from "react"
-import { Image, Container, Button, Header, Modal, Form } from 'semantic-ui-react'
+import { 
+    Image, 
+    Container, 
+    Button, 
+    Header, 
+    Modal, 
+    Form 
+} from 'semantic-ui-react'
 import backgroundImage from '../assets/image.png'
 import { MediaContextProvider, Media } from "./Media"
 
@@ -27,13 +34,15 @@ let offerStyle = {
     textAlign: "center"
 }
 
-function DesktopMainPage() {
+function DesktopMainPage(props) {
     const [open, setOpen] = useState(false)
 
     const [customerData, setCustomerData] = useState({
         name: '',
         phone: ''
     })
+
+    console.log(props)
 
     const [success, setSuccess] = useState(false)
 

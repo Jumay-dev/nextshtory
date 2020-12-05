@@ -13,11 +13,12 @@ import logo from '../assets/logo.png'
 import phone from '../assets/phone.png'
 
 
-function DesktopContainer(props) {
+function DesktopContainer({children}) {
   const [fixed, setFixed] = useState(false)
   const hideFixedMenu = () => setFixed(false)
   const showFixedMenu = () => setFixed(true)
   const [active, setActive] = useState('main');
+  const [secondScreenPosition, setSecondScreenPosition] = useState('sdfs')
 
   const headerStyle = {
     display: "flex",
@@ -37,6 +38,14 @@ function DesktopContainer(props) {
   function handleClick(e, { name }) {
     setActive(name)
   }
+
+  const childrenWithProps = React.Children.map(children, child => {
+    // checking isValidElement is the safe way and avoids a typescript error too
+    if (React.isValidElement(child)) {
+        return React.cloneElement(child, { check: 'asd' });
+    }
+    return child;
+  });
 
   return (
     <Media greaterThan="mobile" >
@@ -61,7 +70,7 @@ function DesktopContainer(props) {
             active={active === 'main' ? true : false }
             onClick={handleClick}
             style={menuPointStyle}
-        >Главная</Menu.Item>
+          >Главная</Menu.Item>
 
           <Menu.Item 
             name="about" 
@@ -90,7 +99,7 @@ function DesktopContainer(props) {
           </Menu.Item>
         </Menu>
       </Visibility>
-      {props.children}
+      {childrenWithProps}
     </Media>
   )
 }

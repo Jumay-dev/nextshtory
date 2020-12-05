@@ -17,11 +17,8 @@ export default function Home() {
     padding: 0,
     boxSizing: "border-box"
   }
-  const [secondScreenPosition, setSecondScreenPosition] = React.useState('sdfs')
-  
   return (    
     <div className="App" style={applicationStyle}>
-      <YMInitializer accounts={[69970516]} options={{webvisor: true}}/>
       <Head>
         <title>Шторы Москвы - купить шторы в Москве</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -29,13 +26,10 @@ export default function Home() {
         <meta name="description" content="Купить шторы на заказ в Москве и Московской области. Лучшие цены, высокое качество, ответственный подход к своему делу." />
         <meta name="keywords" content="шторы, купить шторы, рулонные шторы, шторы фото, шторы на кухню, шторы на окно, магазин штор, шторы на заказ, шторы в гостинную, сшить шторы, салон штор" />
       </Head>
-      <Header
-        secondScreenPosition={secondScreenPosition}
-      >
+      <Header>
+        {/* <YMInitializer accounts={[69970516]} options={{webvisor: true}}/> */}
         <MainPage />
-        <SecondScreen 
-          setSecondScreenPosition={setSecondScreenPosition}
-        />
+        <SecondScreen />
         <ThirdScreen />
         <FourthScreen />
         <DesignerCall />
